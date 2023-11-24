@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(notes)}">
+        <td colspan="3"> No Notes Available </td>
+    </tr>
+    <tr th:each="note : ${notes}">
+        <td><span th:text="${note.title}"> Title </span></td>
+        <td><span th:text="${note.content}"> Content </span></td>
+        <td>
+            <a th:href="@{/note/edit(id=${note.id})}">Edit</a>
+            <form th:action="@{/note/delete/{id}(id=${note.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
